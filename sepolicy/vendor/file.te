@@ -41,3 +41,8 @@ type vendor_hal_display_color_default, domain;
 
 # QTI display vendor data
 type vendor_display_vendor_data_file, file_type, data_file_type;
+
+# QTI display HAL service/HWService types
+type vendor_hal_display_config_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_hal_display_postproc_hwservice, hwservice_manager_type;
+type vendor_qdisplay_service, vndservice_manager_type;
