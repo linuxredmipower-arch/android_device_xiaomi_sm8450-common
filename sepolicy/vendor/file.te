@@ -38,3 +38,6 @@ type vendor_sysfs_usb_supply, sysfs_type, fs_type;
 
 # QTI display color HAL domain (referenced by AOSPA common displayfeature)
 type vendor_hal_display_color_default, domain;
+
+# QTI display vendor data
+type vendor_display_vendor_data_file, file_type, data_file_type;
