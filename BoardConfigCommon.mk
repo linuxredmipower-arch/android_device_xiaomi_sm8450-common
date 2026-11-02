@@ -114,6 +114,17 @@ SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
+# QTI display gralloc handle layout (mirrors hardware/qcom-caf/common/BoardConfigQcom.mk;
+# that file is not included by this tree).  UM 5.10 / GKI 2.0 targets use the
+# full QTI gralloc struct.
+TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE ?= true
+TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE ?= true
+TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT ?= false
+
+$(call soong_config_set,qtidisplay,gralloc_handle_has_custom_content_md_reserved_size,$(TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE))
+$(call soong_config_set,qtidisplay,gralloc_handle_has_reserved_size,$(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE))
+$(call soong_config_set,qtidisplay,gralloc_handle_has_ubwcp_format,$(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT))
+
 # Security patch level
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
