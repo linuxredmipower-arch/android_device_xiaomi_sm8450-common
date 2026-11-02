@@ -110,6 +110,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 104
 TARGET_USERIMAGES_USE_F2FS := true
 
+# QTI vendor AIDs / file capabilities (imported from the known-good marble tree)
+TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
+
 SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
