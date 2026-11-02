@@ -26,3 +26,12 @@ type vendor_touchfeature_device, dev_type;
 
 # QTI battery sysfs (used by AOSPA common sepolicy)
 type vendor_sysfs_battery_supply, fs_type, sysfs_type;
+
+# QTI sysfs types used by AOSPA common sepolicy
+type vendor_sysfs_fingerprint, sysfs_type, fs_type;
+type vendor_sysfs_graphics, sysfs_type, fs_type;
+type vendor_sysfs_kgsl, sysfs_type, fs_type;
+type vendor_sysfs_sensors, sysfs_type, fs_type;
+type vendor_sysfs_touch, sysfs_type, fs_type;
+type vendor_sysfs_usbpd_device, sysfs_type, fs_type;
+type vendor_sysfs_usb_supply, sysfs_type, fs_type;
