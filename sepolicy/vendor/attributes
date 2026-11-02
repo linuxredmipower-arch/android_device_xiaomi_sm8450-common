@@ -32,3 +32,6 @@ attribute vendor_persist_type;
 
 # QTI SOTER HAL client attribute (used by AOSPA common sepolicy)
 attribute vendor_hal_soter_client;
+attribute vendor_hal_soter_server;
+attribute vendor_hal_mlipay_client;
+attribute vendor_hal_mlipay_server;
