@@ -26,3 +26,6 @@ attribute vendor_hal_sensorcommunicate_server;
 attribute hal_touchfeature_xiaomi;
 attribute hal_touchfeature_xiaomi_client;
 attribute hal_touchfeature_xiaomi_server;
+
+# QTI persist files (used by AOSPA common sepolicy)
+attribute vendor_persist_type;
