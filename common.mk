@@ -125,8 +125,6 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Device Settings
 PRODUCT_PACKAGES += \
     KeyHandler \
-    XiaomiDolby \
-    XiaomiParts
 
 # Display / Graphics
 PRODUCT_PACKAGES += \
@@ -154,7 +152,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    ParanoidDoze
 
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.sensor.pickup=xiaomi.sensor.pickup \
@@ -284,7 +281,6 @@ PRODUCT_PACKAGES += \
     Tag \
     android.hardware.nfc-service.nxp \
     com.android.nfc_extras \
-    libnfc_vendor_extn_sys
 
 ifneq ($(TARGET_NFC_SKU),)
 NFC_PERMISSIONS_DIR := $(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(TARGET_NFC_SKU)
