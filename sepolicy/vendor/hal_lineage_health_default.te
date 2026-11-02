@@ -1,0 +1,11 @@
+# Lineage health HAL (vendor.lineage.health-service.default)
+#
+# On QTI trees the battery supply sysfs nodes are labeled
+# vendor_sysfs_battery_supply. The charging-control code probes
+# /sys/class/power_supply/battery/{charging_enabled,input_suspend} and
+# /sys/class/qcom-battery/input_suspend in an unbounded retry loop; without
+# access it never returns from its constructor and never registers
+# IChargingControl, which blocks SystemServer in waitForDeclaredService().
+
+allow hal_lineage_health_default vendor_sysfs_battery_supply:dir r_dir_perms;
+allow hal_lineage_health_default vendor_sysfs_battery_supply:{ file lnk_file } rw_file_perms;
