@@ -16,8 +16,11 @@ binder_call(vendor_hal_citsensorservice_xiaomi_server, vendor_hal_citsensorservi
 vndbinder_use(vendor_hal_citsensorservice_xiaomi_default)
 
 allow vendor_hal_citsensorservice_xiaomi self:{ socket qipcrtr_socket } create_socket_perms;
-# PixelOS: msm_sock_ipc_ioctls macro not available in sm8450 sepolicy
-# allowxperm vendor_hal_citsensorservice_xiaomi self:{ socket qipcrtr_socket } ioctl msm_sock_ipc_ioctls;
+# QTI msm_sock_ipc_ioctls, numeric (macro lives in the sm8850 ioctl_defines,
+# which this tree does not ship)
+allowxperm vendor_hal_citsensorservice_xiaomi self:{ socket qipcrtr_socket } ioctl {
+  0xc300 0xc301 0xc302 0xc303 0xc304 0xc305
+};
 
 allow vendor_hal_citsensorservice_xiaomi_default fwk_sensor_hwservice:hwservice_manager find;
 
