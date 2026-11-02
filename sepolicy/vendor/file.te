@@ -35,3 +35,6 @@ type vendor_sysfs_sensors, sysfs_type, fs_type;
 type vendor_sysfs_touch, sysfs_type, fs_type;
 type vendor_sysfs_usbpd_device, sysfs_type, fs_type;
 type vendor_sysfs_usb_supply, sysfs_type, fs_type;
+
+# QTI display color HAL domain (referenced by AOSPA common displayfeature)
+type vendor_hal_display_color_default, domain;
