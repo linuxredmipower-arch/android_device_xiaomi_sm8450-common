@@ -12,3 +12,10 @@ vendor_restricted_prop(vendor_camera_prop)
 
 # Display (vendor property contexts)
 vendor_restricted_prop(vendor_display_prop)
+
+# Audio / display / sensors / ssr / mpctl vendor props
+vendor_public_prop(vendor_audio_prop)
+vendor_public_prop(vendor_displayfeature_prop)
+vendor_public_prop(vendor_mpctl_prop)
+vendor_public_prop(vendor_sensors_prop)
+vendor_public_prop(vendor_ssr_prop)
