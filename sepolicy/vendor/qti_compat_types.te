@@ -1,0 +1,26 @@
+# QTI types referenced by the AOSPA common sepolicy but absent from this tree.
+#
+# This PixelOS tree does not ship device/qcom/sepolicy_vndr/sm8450 (and does not
+# include device/qcom/sepolicy_vndr/SEPolicy.mk at all), so the QTI base types
+# that the AOSPA device sepolicy relies on are missing.  The declarations below
+# mirror the upstream QTI definitions; keep them declaration-only so they can be
+# replaced by a real QTI sepolicy drop later.
+
+# --- domains -------------------------------------------------------------
+type sensors, domain;
+type vendor_sensors, domain;
+type vendor_qrtr, domain;
+type vendor_wcnss_service, domain;
+type vendor_hal_gnss_qti, domain;
+type vendor_hal_perf_default, domain, mlstrustedsubject;
+
+# --- hwservice -----------------------------------------------------------
+type vendor_hal_perf_hwservice, hwservice_manager_type, protected_hwservice;
+
+# --- devices -------------------------------------------------------------
+type vendor_dmabuf_qseecom_heap_device, dmabuf_heap_device_type, dev_type;
+type vendor_dmabuf_qseecom_ta_heap_device, dmabuf_heap_device_type, dev_type;
+
+# --- files ---------------------------------------------------------------
+type firmware_file, file_type, contextmount_type, vendor_file_type;
+type vendor_nfc_vendor_data_file, file_type, data_file_type;
