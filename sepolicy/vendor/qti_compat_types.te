@@ -6,6 +6,11 @@
 # mirror the upstream QTI definitions; keep them declaration-only so they can be
 # replaced by a real QTI sepolicy drop later.
 
+# --- hal attributes ------------------------------------------------------
+# The SOTER client/server attributes are declared in sepolicy/vendor/attributes;
+# the base attribute is needed by hal_client_domain()/hal_server_domain().
+attribute vendor_hal_soter;
+
 # --- domains -------------------------------------------------------------
 type sensors, domain;
 type vendor_sensors, domain;
