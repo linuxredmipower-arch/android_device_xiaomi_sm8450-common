@@ -1,0 +1,25 @@
+<!--
+     Device framework compatibility matrix fragment (PixelOS-CLO A17).
+
+     Android 17's framework matrices (level 7 / 8 / 202404+) no longer list
+     the HIDL bluetooth audio HAL, while the QTI bluetooth stack on this
+     device still provides:
+
+         android.hardware.bluetooth.audio@2.1
+             ::IBluetoothAudioProvidersFactory/default
+
+     Declare it here as an optional framework HAL instead of removing it from
+     the device manifest (which would hide a HAL that is actually present).
+     Remove this fragment once the vendor stack is migrated to the AIDL
+     android.hardware.bluetooth.audio@4 interface.
+-->
+<compatibility-matrix version="1.0" type="framework">
+    <hal format="hidl" optional="true">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>2.1</version>
+        <interface>
+            <name>IBluetoothAudioProvidersFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>

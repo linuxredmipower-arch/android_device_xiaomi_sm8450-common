@@ -1,0 +1,15 @@
+# Types referenced by the AOSPA common sepolicy that are provided neither by
+# the QTI sm8450 policy nor by the QSSI public policy.
+#
+# Keep this file sorted before other .te files (aospa_ prefix) so that
+# checkpolicy sees the declarations before their first use.
+
+# AOSPA common references a plain "sensors" domain (QTI only has
+# hal_sensors_default).
+type sensors, domain;
+
+# Vendor HWService types used by AOSPA hwservice_contexts but absent from
+# the QTI trees.
+type hal_quickcamera_hwservice, hwservice_manager_type;
+type vendor_hal_camerapostproc_xiaomi_hwservice, hwservice_manager_type;
+type vendor_hal_fingerprint_hwservice_xiaomi, hwservice_manager_type;

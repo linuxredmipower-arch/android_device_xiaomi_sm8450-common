@@ -43,6 +43,9 @@ TARGET_CAMERA_SERVICE_EXT_LIB := //$(COMMON_PATH):libcameraservice_extension.xia
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(HARDWARE_PATH)/vintf/xiaomi_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(COMMON_PATH)/vintf/compatibility_matrix.xml
+DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/hidl/manifest.xml
 ifeq ($(TARGET_NFC_SKU),)
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/hidl/manifest_nfc.xml
@@ -110,14 +113,33 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 104
 TARGET_USERIMAGES_USE_F2FS := true
 
+# QTI vendor AIDs / file capabilities (imported from the known-good marble tree)
+TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
+
 SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
+
+# QTI display gralloc handle layout (mirrors hardware/qcom-caf/common/BoardConfigQcom.mk;
+# that file is not included by this tree).  UM 5.10 / GKI 2.0 targets use the
+# full QTI gralloc struct.
+TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE ?= true
+TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE ?= true
+TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT ?= false
+
+$(call soong_config_set,qtidisplay,gralloc_handle_has_custom_content_md_reserved_size,$(TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE))
+$(call soong_config_set,qtidisplay,gralloc_handle_has_reserved_size,$(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE))
+$(call soong_config_set,qtidisplay,gralloc_handle_has_ubwcp_format,$(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT))
+
+# UM 5.10 still uses the old rmnet data API (see BoardConfigQcom.mk)
+$(call soong_config_set,rmnetctl,old_rmnet_data,true)
 
 # Security patch level
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Sepolicy
+include device/qcom/sepolicy_vndr/sm8450/SEPolicy.mk
+
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 

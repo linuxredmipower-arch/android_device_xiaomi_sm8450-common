@@ -26,3 +26,7 @@ attribute vendor_hal_sensorcommunicate_server;
 attribute hal_touchfeature_xiaomi;
 attribute hal_touchfeature_xiaomi_client;
 attribute hal_touchfeature_xiaomi_server;
+
+# Xiaomi mlipay HAL attributes (not provided by QTI/QSSI policy)
+attribute vendor_hal_mlipay_client;
+attribute vendor_hal_mlipay_server;
