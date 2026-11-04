@@ -79,6 +79,10 @@ BOARD_BOOTCONFIG := \
     androidboot.usbcontroller=a600000.dwc3 \
     # androidboot.selinux=permissive
 
+# DEBUG R1-b (2026-11-04): permissive boot to isolate SELinux denials.
+# Remove before release; see round16/pixelos_aospa_completion_plan.md.
+BOARD_BOOTCONFIG += androidboot.selinux=permissive
+
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
