@@ -141,6 +141,9 @@ $(call soong_config_set,rmnetctl,old_rmnet_data,true)
 # Security patch level
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
+# AOSPA display board config (GRALLOC4, HWC2, DRM PP, etc.)
+-include hardware/qcom/display/config/display-board.mk
+
 # Sepolicy
 # AOSPA calcite policy (fork): path patched to device/qcom/sepolicy_vndr-aospa,
 # and the is-vendor-board-platform guard removed (macro absent in PixelOS-CLO).
