@@ -146,6 +146,24 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # and the is-vendor-board-platform guard removed (macro absent in PixelOS-CLO).
 include device/qcom/sepolicy_vndr-aospa/SEPolicy.mk
 
+# AOSPA device/qcom/common sepolicy (only the policy files; Soong side is pruned
+# in custom_marble.mk). common/public is absent upstream, so add it conditionally.
+COMMON_SEPOLICY_PATH := device/qcom/common/sepolicy
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    $(COMMON_SEPOLICY_PATH)/generic/vendor/common \
+    $(COMMON_SEPOLICY_PATH)/qva/vendor/common \
+    $(COMMON_SEPOLICY_PATH)/generic/vendor/taro \
+    $(COMMON_SEPOLICY_PATH)/qva/vendor/taro
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_SEPOLICY_PATH)/qva/vendor/test
+endif
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
+    $(COMMON_SEPOLICY_PATH)/common/private \
+    $(COMMON_SEPOLICY_PATH)/generic/private
+ifneq ($(wildcard $(COMMON_SEPOLICY_PATH)/common/public),)
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_SEPOLICY_PATH)/common/public
+endif
+
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 
