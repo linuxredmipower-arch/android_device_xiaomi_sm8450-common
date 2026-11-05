@@ -152,9 +152,8 @@ include device/qcom/sepolicy_vndr-aospa/SEPolicy.mk
 # AOSPA device/qcom/common sepolicy (only the policy files; Soong side is pruned
 # in custom_marble.mk). common/public is absent upstream, so add it conditionally.
 COMMON_SEPOLICY_PATH := device/qcom/common/sepolicy
-# 只取 qva 侧：common 的 generic/vendor/common 与 AOSPA sepolicy_vndr 在
-# vendor_qms_service（service_manager_type vs vndservice_manager_type）上冲突。
 BOARD_VENDOR_SEPOLICY_DIRS += \
+    $(COMMON_SEPOLICY_PATH)/generic/vendor/common \
     $(COMMON_SEPOLICY_PATH)/qva/vendor/common \
     $(COMMON_SEPOLICY_PATH)/generic/vendor/taro \
     $(COMMON_SEPOLICY_PATH)/qva/vendor/taro
