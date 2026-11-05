@@ -157,12 +157,10 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_SEPOLICY_PATH)/qva/vendor/test
 endif
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    $(COMMON_SEPOLICY_PATH)/common/private \
-    $(COMMON_SEPOLICY_PATH)/generic/private
-ifneq ($(wildcard $(COMMON_SEPOLICY_PATH)/common/public),)
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_SEPOLICY_PATH)/common/public
-endif
+# 注意：device/qcom/common/sepolicy/common/private 与 Lineage 的
+# device/lineage/sepolicy/common/private 重复定义 vendor.camera.aux.packageexcludelist，
+# 会触发 host_init_verifier duplicate prefix。这里只取 vendor 侧策略，
+# system_ext 的 common/private、common/public 不加入。
 
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
