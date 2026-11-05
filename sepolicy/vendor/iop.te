@@ -1,0 +1,3 @@
+# AOSPA common qva/vendor/common/hwservice_contexts references this type,
+# but AOSPA sepolicy_vndr does not define it (Lineage sm8450 defines it).
+type vendor_hal_iop_hwservice, hwservice_manager_type, protected_hwservice;
