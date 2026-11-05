@@ -142,7 +142,9 @@ $(call soong_config_set,rmnetctl,old_rmnet_data,true)
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Sepolicy
-include device/qcom/sepolicy_vndr/sm8450/SEPolicy.mk
+# AOSPA calcite policy (fork): path patched to device/qcom/sepolicy_vndr-aospa,
+# and the is-vendor-board-platform guard removed (macro absent in PixelOS-CLO).
+include device/qcom/sepolicy_vndr-aospa/SEPolicy.mk
 
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
